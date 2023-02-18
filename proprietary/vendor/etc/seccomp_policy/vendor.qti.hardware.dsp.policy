@@ -63,3 +63,5 @@ prctl: 1
 write: 1
 madvise: 1
 madvise: 1
+madvise: 1
+madvise: 1
