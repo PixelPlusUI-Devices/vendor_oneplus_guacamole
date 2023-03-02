@@ -45,14 +45,23 @@ cc_prebuilt_library_shared {
 	soc_specific: true,
 }
 
-android_app_import {
-	name: "CACertService",
+cc_prebuilt_library_shared {
+	name: "libthermalclient",
 	owner: "oneplus",
-	apk: "proprietary/vendor/app/CACertService/CACertService.apk",
-	certificate: "platform",
-	dex_preopt: {
-		enabled: false,
+	strip: {
+		none: true,
 	},
+	target: {
+		android_arm: {
+			srcs: ["proprietary/vendor/lib/libthermalclient.so"],
+		},
+		android_arm64: {
+			srcs: ["proprietary/vendor/lib64/libthermalclient.so"],
+		},
+	},
+	compile_multilib: "both",
+	check_elf_files: false,
+	prefer: true,
 	soc_specific: true,
 }
 
@@ -206,9 +215,9 @@ android_app_import {
 }
 
 android_app_import {
-	name: "daxService",
+	name: "WfdService",
 	owner: "oneplus",
-	apk: "proprietary/system_ext/priv-app/daxService/daxService.apk",
+	apk: "proprietary/system_ext/priv-app/WfdService/WfdService.apk",
 	certificate: "platform",
 	dex_preopt: {
 		enabled: false,
@@ -218,9 +227,9 @@ android_app_import {
 }
 
 android_app_import {
-	name: "dpmserviceapp",
+	name: "daxService",
 	owner: "oneplus",
-	apk: "proprietary/system_ext/priv-app/dpmserviceapp/dpmserviceapp.apk",
+	apk: "proprietary/system_ext/priv-app/daxService/daxService.apk",
 	certificate: "platform",
 	dex_preopt: {
 		enabled: false,
@@ -254,15 +263,21 @@ android_app_import {
 }
 
 dex_import {
-	name: "tcmclient",
+	name: "WfdCommon",
 	owner: "oneplus",
-	jars: ["proprietary/framework/tcmclient.jar"],
+	jars: ["proprietary/system/framework/WfdCommon.jar"],
 }
 
 dex_import {
 	name: "qcnvitems",
 	owner: "oneplus",
 	jars: ["proprietary/system/framework/qcnvitems.jar"],
+}
+
+dex_import {
+	name: "tcmclient",
+	owner: "oneplus",
+	jars: ["proprietary/system/framework/tcmclient.jar"],
 }
 
 dex_import {
@@ -325,6 +340,20 @@ dex_import {
 	name: "qcrilhook",
 	owner: "oneplus",
 	jars: ["proprietary/system_ext/framework/qcrilhook.jar"],
+	system_ext_specific: true,
+}
+
+dex_import {
+	name: "qti-telephony-common",
+	owner: "oneplus",
+	jars: ["proprietary/system_ext/framework/qti-telephony-common.jar"],
+	system_ext_specific: true,
+}
+
+dex_import {
+	name: "vendor.qti.hardware.alarm-V1.0-java",
+	owner: "oneplus",
+	jars: ["proprietary/system_ext/framework/vendor.qti.hardware.alarm-V1.0-java.jar"],
 	system_ext_specific: true,
 }
 
